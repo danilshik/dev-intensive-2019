@@ -18,12 +18,12 @@ fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
     return dateFormat.format(this)
 }
 
-fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND) : Date{
+fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
     var time = this.time
 
-    time += when(units){
+    time += when (units) {
         TimeUnits.SECOND -> value * SECOND
-        TimeUnits.MINUTE-> value * MINUTE
+        TimeUnits.MINUTE -> value * MINUTE
         TimeUnits.HOUR -> value * HOUR
         TimeUnits.DAY -> value * DAY
     }
@@ -33,9 +33,9 @@ fun Date.add(value:Int, units: TimeUnits = TimeUnits.SECOND) : Date{
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String {
-    val diff = date.time  - time
-    return if(diff >= 0){
-        when(diff){
+    val diff = date.time - time
+    return if (diff >= 0) {
+        when (diff) {
             in 0.sec..1.sec -> "только что"
             in 1.sec..45.sec -> "несколько секунд назад"
             in 45.sec..75.sec -> "минуту назад"
@@ -46,8 +46,8 @@ fun Date.humanizeDiff(date: Date = Date()): String {
             in 26.hour..360.day -> "${TimeUnits.DAY.plural(diff / DAY)} назад"
             else -> "более года назад"
         }
-    } else{
-        when(diff){
+    } else {
+        when (diff) {
             in (-1).sec..0.sec -> "прямо сейчас"
             in (-45).sec..(-1).sec -> "через несколько секунд назад"
             in (-75).sec..(-45).sec -> "через минуту"
@@ -62,7 +62,7 @@ fun Date.humanizeDiff(date: Date = Date()): String {
 
 }
 
-enum class TimeUnits{
+enum class TimeUnits {
     SECOND,
     MINUTE,
     HOUR,
@@ -71,24 +71,25 @@ enum class TimeUnits{
     fun plural(value: Long) = "$value ${pluralStrings[value.asPlurals]}"
 }
 
-enum class Plurals{
+enum class Plurals {
     ONE,
     FEW,
     MANY
 }
 
-val Long.asPlurals get() = when{
-    this % 100L in 5L..20L -> Plurals.MANY
-    this % 10L == 1L -> Plurals.ONE
-    this % 10L in 2L..4L -> Plurals.FEW
-    else -> Plurals.MANY
-}
+val Long.asPlurals
+    get() = when {
+        this % 100L in 5L..20L -> Plurals.MANY
+        this % 10L == 1L -> Plurals.ONE
+        this % 10L in 2L..4L -> Plurals.FEW
+        else -> Plurals.MANY
+    }
 
 
-
-val TimeUnits.pluralStrings get() = when(this){
-    TimeUnits.SECOND -> mapOf(Plurals.ONE to "секунду", Plurals.FEW to "секунды", Plurals.MANY to "секунд")
-    TimeUnits.MINUTE -> mapOf(Plurals.ONE to "минуту", Plurals.FEW to "минуты", Plurals.MANY to "минут")
-    TimeUnits.HOUR -> mapOf(Plurals.ONE to "час", Plurals.FEW to "часа", Plurals.MANY to "часов")
-    TimeUnits.DAY -> mapOf(Plurals.ONE to "день", Plurals.FEW to "дня", Plurals.MANY to "дней")
-}
+val TimeUnits.pluralStrings
+    get() = when (this) {
+        TimeUnits.SECOND -> mapOf(Plurals.ONE to "секунду", Plurals.FEW to "секунды", Plurals.MANY to "секунд")
+        TimeUnits.MINUTE -> mapOf(Plurals.ONE to "минуту", Plurals.FEW to "минуты", Plurals.MANY to "минут")
+        TimeUnits.HOUR -> mapOf(Plurals.ONE to "час", Plurals.FEW to "часа", Plurals.MANY to "часов")
+        TimeUnits.DAY -> mapOf(Plurals.ONE to "день", Plurals.FEW to "дня", Plurals.MANY to "дней")
+    }
