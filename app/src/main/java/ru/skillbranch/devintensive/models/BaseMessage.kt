@@ -8,25 +8,25 @@ abstract class BaseMessage(
     val chat: Chat,
     val isIncoming: Boolean = false,
     val date: Date = Date()
-){
+) {
+
     abstract fun formatMessage(): String
 
-    companion object AbstractFactory{
+    companion object AbstractFactory {
         var lastId = -1
 
         fun makeMessage(
-            from:User?,
+            from: User?,
             chat: Chat,
             date: Date = Date(),
-            type:String = "text",
-            payload: Any,
+            type: String = "text",
+            payload: Any?,
             isIncoming: Boolean = false
-        ): BaseMessage{
+        ): BaseMessage {
             lastId++
-            return when(type){
+            return when (type) {
                 "image" -> ImageMessage("$lastId", from, chat, isIncoming, date, payload.toString())
                 else -> TextMessage("$lastId", from, chat, isIncoming, date, payload.toString())
-
             }
         }
     }
