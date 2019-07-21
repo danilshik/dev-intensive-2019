@@ -7,15 +7,18 @@ import android.media.Image
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Bender
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener{
     lateinit var benderImage : ImageView
     lateinit var textTxt : TextView
     lateinit var messageEt : EditText
@@ -41,13 +44,27 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         Log.d("M_MainActivity", "onCreate $status $question")
 
-        val(r, g, b) = benderObj.status.color
-        benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+        setBenderColor(benderObj.status.color)
 
 
         textTxt.text = benderObj.askQuestion()
         sendBtn.setOnClickListener(this)
+
+        messageEt.setOnEditorActionListener{
+            view, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE ||
+                    event != null &&
+                    event.action == KeyEvent.ACTION_DOWN &&
+                    event.keyCode == KeyEvent.KEYCODE_ENTER){
+                sendAnswer()
+                true
+            } else{
+                false
+            }
+        }
     }
+
+
 
 
     override fun onRestart() {
@@ -101,5 +118,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    
+
+    private fun sendAnswer() {
+        hideKeyboard()
+        val answer = messageEt.text.toString()
+        if(answer.isEmpty())
+            return
+        val (phrase, color) = benderObj.listenAnswer(answer)
+        messageEt.setText("")
+        setBenderColor(color)
+        textTxt.text = phrase
+    }
+
+    private fun setBenderColor(color: Triple<Int, Int, Int>) {
+        val(r, g, b) = color
+        benderImage.setColorFilter(Color.rgb(r, g, b), PorterDuff.Mode.MULTIPLY)
+    }
+
+
 }
