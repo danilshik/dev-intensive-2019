@@ -8,20 +8,20 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         if (validationError != null){
             return (validationError + question.question) to status.color
         }
-        return if(question.answers.contains(answer)){
+        if(question.answers.contains(answer.toLowerCase())){
             question = question.nextQuestion()
 
-            "Отлично - ты справился\n${question.question}" to status.color
-        } else{
-            status = status.nextStatus()
-            if (status.ordinal != 0){
-                "Это неправильный ответ\n${question.question}" to status.color
-            } else{
-                question = Question.NAME
-
-                "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
-            }
+            return "Отлично - ты справился\n${question.question}" to status.color
         }
+        status = status.nextStatus()
+        return if (status.ordinal != 0){
+            "Это неправильный ответ\n${question.question}" to status.color
+        } else{
+            question = Question.NAME
+
+            "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+        }
+
     }
 
 
