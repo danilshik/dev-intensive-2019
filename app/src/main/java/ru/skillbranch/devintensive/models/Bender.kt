@@ -10,7 +10,10 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         Question.IDLE -> Question.IDLE.question
     }
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>>{
-
+        val validationError = question.validate(answer)
+        if (validationError != null){
+            return (validationError + question.question) to status.color
+        }
         return if(question.answers.contains(answer)){
             question = question.nextQuestion()
 
@@ -45,14 +48,14 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
         NAME("Как меня зовут?", listOf("бендер", "bender")) {
             override fun nextQuestion(): Question = PROFESSION
             override fun validate(answer: String): String? =
-                if (!answer[0].isLowerCase())
+                if (!answer[0].isUpperCase())
                     "Имя должно начинаться с заглавной буквы\n"
                 else null
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender")) {
             override fun nextQuestion(): Question = MATERIAL
             override fun validate(answer: String): String? =
-                if(!answer[0].isUpperCase())
+                if(!answer[0].isLowerCase())
                     "Профессия должна начинаться со строчной буквы\n"
                 else null
         },
