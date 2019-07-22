@@ -6,7 +6,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>>{
         val validationError = question.validate(answer)
         if (validationError != null){
-            return (validationError + question.question) to status.color
+            return ("""$validationError${question.question}""") to status.color
         }
         if(question.answers.contains(answer.toLowerCase())){
             question = question.nextQuestion()
