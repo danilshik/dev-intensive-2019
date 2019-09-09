@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initToolbar()
@@ -44,10 +45,13 @@ class MainActivity : AppCompatActivity() {
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         val touchCallback = ChatItemTouchHelperCallback(chatAdapter){
             viewModel.addToArchive(it.id)
-            Snackbar.make(rv_chat_list, "Вы точно хотите добавить ${it.title} в архив?", Snackbar.LENGTH_LONG).show()
+//            Snackbar.make(rv_chat_list, "Вы точно хотите добавить ${it.title} в архив?", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(rv_chat_list, "Вы точно хотите добавить ${it.title} в архив?", Snackbar.LENGTH_LONG)
+                .setAction(R.string.snackbar_archive_cancel) { _ -> viewModel.restoreFromArchive(it.id)}.show()
         }
 
         val touchHelper = ItemTouchHelper(touchCallback)
+        touchHelper.attachToRecyclerView(rv_chat_list)
 
         with(rv_chat_list){
             adapter = chatAdapter
@@ -55,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(divider)
         }
 
-        touchHelper.attachToRecyclerView(rv_chat_list)
 
 
 
