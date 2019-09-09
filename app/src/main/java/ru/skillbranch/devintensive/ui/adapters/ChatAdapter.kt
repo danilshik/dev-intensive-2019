@@ -15,7 +15,9 @@ import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.ChatItem
 import ru.skillbranch.devintensive.models.data.ChatType
 
-class ChatAdapter(val listener : (ChatItem)-> Unit) : RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
+class ChatAdapter(
+    val listener : (ChatItem)-> Unit
+) : RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
     companion object{
         private const val ARCHIVE_TYPE = 0
         private const val SINGLE_TYPE = 1
@@ -92,7 +94,7 @@ class ChatAdapter(val listener : (ChatItem)-> Unit) : RecyclerView.Adapter<ChatA
             if(item.avatar == null){
                 Glide.with(itemView)
                     .clear(iv_avatar_single)
-                iv_avatar_single.setInitials(item.initials)
+                iv_avatar_single.initials = item.initials
             } else {
                 Glide.with(itemView)
                     .load(item.avatar)
@@ -134,7 +136,7 @@ class ChatAdapter(val listener : (ChatItem)-> Unit) : RecyclerView.Adapter<ChatA
 
 
         override fun bind(item: ChatItem, listener: (ChatItem) -> Unit){
-            iv_avatar_group.setInitials(item.title[0].toString())
+            iv_avatar_group.initials = item.title[0].toString()
 
             with(tv_date_group){
                 visibility = if(item.lastMessageDate != null) View.VISIBLE else View.GONE
