@@ -129,7 +129,7 @@ class GroupActivity : AppCompatActivity() {
         val views = chip_group.children.associate{view-> view.tag to view}
 
         for((k, v) in views){
-            if(users.containsKey(k)) chip_group.removeView(v)
+            if(!users.containsKey(k)) chip_group.removeView(v)
             else users.remove(k)
         }
         users.forEach{(_, v) -> addChipToGroup(v)}
