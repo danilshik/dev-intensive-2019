@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:background="?attr/colorItemView"
         android:layout_height="@dimen/item_size"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:padding="@dimen/spacing_normal_16">
@@ -33,7 +34,7 @@
             android:layout_toLeftOf="@id/tv_date_single"
             android:layout_toRightOf="@id/iv_avatar_single"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/color_primary"
+            android:textColor="?attr/colorTitle"
             android:textSize="14sp"
             tools:text="chat title"/>
 
@@ -47,7 +48,7 @@
             android:layout_toLeftOf="@id/tv_counter_single"
             android:layout_toRightOf="@id/iv_avatar_single"
             android:fontFamily="sans-serif-medium"
-            android:textColor="@color/color_gray_dark"
+            android:textColor="?attr/colorText"
             android:textSize="14sp"
             tools:text="Когда я проходил интенсив, я мало спал"/>
 
@@ -58,6 +59,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:textSize="10sp"
+            android:textColor="?attr/colorText"
             tools:text="18:00"/>
 
     <TextView

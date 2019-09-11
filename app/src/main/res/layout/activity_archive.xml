@@ -3,7 +3,9 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:background="?attr/colorItemView"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".ui.archive.ArchiveActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,6 +18,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorToolbar"
                 app:popupTheme="@style/AppTheme.PopupOverlay">
 
 
@@ -34,6 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_chat_archive"
+                android:background="?attr/colorItemView"
         >
 
         </androidx.recyclerview.widget.RecyclerView>
