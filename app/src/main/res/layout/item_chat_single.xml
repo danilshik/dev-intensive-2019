@@ -71,7 +71,7 @@
             android:minWidth="@dimen/counter_size"
             android:paddingLeft="4dp"
             android:paddingRight="4dp"
-            android:textColor="@color/color_white"
+            android:textColor="@android:color/white"
             android:textSize="10sp"
             tools:text="11"/>
 

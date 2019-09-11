@@ -1,6 +1,7 @@
 package ru.skillbranch.devintensive.ui.archive
 
 import android.content.Intent
+import android.graphics.drawable.InsetDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_archive.*
 import kotlinx.android.synthetic.main.activity_archive.toolbar
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.R
+import ru.skillbranch.devintensive.extensions.dp
 import ru.skillbranch.devintensive.extensions.setBackgroundDrawable
 import ru.skillbranch.devintensive.extensions.setTextColor
 import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
@@ -52,7 +54,10 @@ class ArchiveActivity : AppCompatActivity() {
                 .show()
         }
 
+        val myDivider = resources.getDrawable(R.drawable.divider_chat_list, theme)
+        val myDividerWithMargin = InsetDrawable(myDivider, 72.dp, 0, 0, 0)
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        divider.setDrawable(myDividerWithMargin)
 
 
         val touchCallback = ChatItemTouchHelperCallback(chatAdapter) {

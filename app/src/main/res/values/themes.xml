@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-
+    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color_primary</item>
@@ -12,9 +10,6 @@
         <item name="colorAccentedSurface">@color/color_primary_light</item>
         <item name="colorIcon">@color/color_gray</item>
         <item name="colorDivider">@color/color_divider_dark</item>
-
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowAnimationStyle">@style/Activity.Transitions</item>
 
         <!--Colors for Day Theme-->
         <item name="colorToolbar">@color/color_primary</item>
@@ -33,14 +28,12 @@
         <item name="colorTitle">@color/color_primary</item>
         <item name="colorSnackBarText">@android:color/white</item>
 
-        <!--Use style for Default Snackbar Background Color-->
-        <!--        <item name="snackbarStyle">@style/MySnackBarStyle</item>-->
-
-
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/Activity.Transitions</item>
     </style>
 
-    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar" >
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
 </resources>

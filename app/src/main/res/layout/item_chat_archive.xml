@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_size" xmlns:tools="http://schemas.android.com/tools"
         android:padding="@dimen/spacing_normal_16"
-        android:background="@color/color_white">
+        android:background="@android:color/white">
 
     <ImageView android:id="@+id/iv_avatar_archive"
             android:layout_width="@dimen/avatar_item_size"
@@ -69,7 +69,7 @@
             android:gravity="center"
             tools:text="1111111"
             android:textSize="10sp"
-            android:textColor="@color/color_white"
+            android:textColor="@android:color/white"
             android:paddingRight="4dp"
             android:paddingLeft="4dp"
 

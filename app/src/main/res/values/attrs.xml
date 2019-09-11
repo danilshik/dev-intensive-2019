@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="MySnackBarStyle" parent="Widget.MaterialComponents.Snackbar">
-        <item name="android:background">@drawable/bg_snackbar</item>
-    </style>
-
     <declare-styleable name="AspectRatioImageView">
         <attr name="aspectRatio" format="float"/>
     </declare-styleable>

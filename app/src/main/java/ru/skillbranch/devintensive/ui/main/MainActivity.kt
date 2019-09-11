@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import ru.skillbranch.devintensive.R
+import ru.skillbranch.devintensive.extensions.dp
 import ru.skillbranch.devintensive.extensions.setBackgroundDrawable
 import ru.skillbranch.devintensive.extensions.setTextColor
 import ru.skillbranch.devintensive.models.data.ChatType
@@ -77,14 +78,10 @@ class MainActivity : AppCompatActivity() {
                     .show()
             }
         }
-//        val myDivider = resources.getDrawable(R.drawable.divider_chat_list, theme)
-//        val myDividerWithMargin = InsetDrawable(myDivider, 72.dp, 0, 0, 0)
-
-
-
-
+        val myDivider = resources.getDrawable(R.drawable.divider_chat_list, theme)
+        val myDividerWithMargin = InsetDrawable(myDivider, 72.dp, 0, 0, 0)
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-//        divider.setDrawable(myDividerWithMargin)
+        divider.setDrawable(myDividerWithMargin)
 
 
         val touchCallback = ChatItemTouchHelperCallback(chatAdapter) {
