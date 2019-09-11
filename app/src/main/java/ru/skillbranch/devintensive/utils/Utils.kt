@@ -1,5 +1,9 @@
 package ru.skillbranch.devintensive.utils
 
+import android.content.Context
+import android.content.res.Configuration
+import android.util.TypedValue
+import ru.skillbranch.devintensive.R
 import java.lang.StringBuilder
 
 object Utils {
@@ -94,6 +98,27 @@ object Utils {
         "login",
         "join"
     )
+
+    fun getThemeAccentColor(context: Context): Int {
+        val value = TypedValue()
+        context.theme.resolveAttribute(R.attr.colorAccent, value, true)
+        return value.data
+    }
+
+    fun getCurrentModeColor(context: Context, attrColor: Int): Int {
+        val value = TypedValue()
+        context.theme.resolveAttribute(attrColor, value, true)
+        return value.data
+    }
+
+    fun isNightModeActive(context: Context) : Boolean {
+        return when (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> true
+            else -> false
+        }
+    }
+
+
 
 
 
